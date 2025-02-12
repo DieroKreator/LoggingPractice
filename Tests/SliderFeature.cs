@@ -1,6 +1,6 @@
-using LogginPractice.Pages;
+using CreatingReports.Pages;
 
-namespace LogginPractice.Tests;
+namespace CreatingReports.Tests;
 
 [TestClass]
 [TestCategory("SliderFeature"), TestCategory("AutomationPractice")]

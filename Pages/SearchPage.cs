@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 
-namespace LogginPractice.Pages;
+namespace CreatingReports.Pages;
 
 internal class SearchPage : BaseApplicationPage
 {

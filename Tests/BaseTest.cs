@@ -2,7 +2,7 @@ using System.Reflection;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace LogginPractice.Tests
+namespace CreatingReports.Tests
 {
     public class BaseTest
     {

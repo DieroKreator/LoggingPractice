@@ -1,17 +1,17 @@
 using NLog;
 using OpenQA.Selenium;
 
-namespace LogginPractice.Pages;
+namespace CreatingReports.Pages;
 
 internal class HomePage : BaseApplicationPage
 {
     private static Logger _logger = LogManager.GetCurrentClassLogger();
     public HomePage(IWebDriver driver) : base(driver)
     {
-        Slider = new Slider(Driver); 
+        Slider = new Slider(Driver);
     }
 
-    public Slider Slider { get; internal set; } 
+    public Slider Slider { get; internal set; }
 
     internal void GoTo()
     {

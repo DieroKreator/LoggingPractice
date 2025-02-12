@@ -1,6 +1,6 @@
-using LogginPractice.Pages;
+using CreatingReports.Pages;
 
-namespace LogginPractice.Tests;
+namespace CreatingReports.Tests;
 
 [TestClass]
 [TestCategory("SearchingFeature")]
@@ -16,7 +16,7 @@ public class SearchFunctionality : BaseTest
         HomePage homePage = new HomePage(Driver);
         homePage.GoTo();
         SearchPage searchPage = homePage.Search(stringToSearch);
-        Assert.IsTrue(searchPage.Contains(Item.Blouse), 
+        Assert.IsTrue(searchPage.Contains(Item.Blouse),
             $"When searching for the string=>{stringToSearch}, " +
             $"we did not find it in the search results.");
     }

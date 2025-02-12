@@ -1,4 +1,4 @@
-namespace LogginPractice;
+namespace CreatingReports;
 internal enum Item
 {
     Blouse
