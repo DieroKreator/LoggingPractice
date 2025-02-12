@@ -22,6 +22,7 @@ internal class HomePage : BaseApplicationPage
 
     internal SearchPage Search(string itemToSearchFor)
     {
+        _logger.Trace("Attempting to perform a Search.");
         Driver.FindElement(By.Id("search_query_top")).SendKeys(itemToSearchFor);
         Driver.FindElement(By.Name("submit_search")).Click();
         _logger.Info($"Search for an item in the search bar=>{itemToSearchFor}");
