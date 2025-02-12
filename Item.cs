@@ -1,4 +1,4 @@
-namespace AutomationPractice;
+namespace LogginPractice;
 internal enum Item
 {
     Blouse

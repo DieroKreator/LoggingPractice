@@ -1,4 +1,6 @@
-namespace AutomationPractice;
+using LogginPractice.Pages;
+
+namespace LogginPractice.Tests;
 
 [TestClass]
 [TestCategory("ContactUsPage")]

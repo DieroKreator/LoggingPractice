@@ -1,11 +1,9 @@
 using OpenQA.Selenium;
 
-namespace AutomationPractice;
+namespace LogginPractice.Pages;
 
 public class Slider : BaseApplicationPage
 {
-    private IWebDriver driver;
-
     public Slider(IWebDriver driver) : base(driver) { }
 
     public object CurrentImage => MainSliderImage.GetAttribute("style");

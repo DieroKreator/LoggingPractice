@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 
-namespace AutomationPractice;
+namespace LogginPractice.Pages;
 
 public class AutomationPractice;
 
