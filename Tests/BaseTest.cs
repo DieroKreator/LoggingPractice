@@ -1,30 +1,79 @@
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
+using NLog;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace CreatingReports.Tests
+namespace CreatingReports.Tests;
+
+[TestCategory("CreatingReports")]
+[TestClass]
+public class BaseTest
 {
-    public class BaseTest
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    protected IWebDriver? Driver { get; private set; }
+    public TestContext TestContext { get; set; }
+    private ScreenshotTaker ScreenshotTaker { get; set; }
+
+    [TestInitialize]
+    public void SetupForEverySingleTestMethod()
     {
-        public IWebDriver? Driver { get; set; }
+        Logger.Debug("*************************************** TEST STARTED");
+        Logger.Debug("*************************************** TEST STARTED");
+        Reporter.AddTestCaseMetadataToHtmlReport(TestContext);
+        Driver = GetChromeDriver();
+        ScreenshotTaker = new ScreenshotTaker(Driver, TestContext);
+    }
 
-        [TestInitialize]
-        public void SetupForEverySingleTestMethod()
+    [TestCleanup]
+    public void CleanUpAfterEveryTestMethod()
+    {
+        Logger.Debug(GetType().FullName + " started a method tear down");
+        try
         {
-            Driver = GetChromeDriver();
+            TakeScreenshotForTestFailure();
         }
+        catch (Exception e)
+        {
+            Logger.Error(e.Source);
+            Logger.Error(e.StackTrace);
+            Logger.Error(e.InnerException);
+            Logger.Error(e.Message);
+        }
+        finally
+        {
+            StopBrowser();
+            Logger.Debug(TestContext.TestName);
+            Logger.Debug("*************************************** TEST STOPPED");
+            Logger.Debug("*************************************** TEST STOPPED");
+        }
+    }
 
-        [TestCleanup]
-        public void CleanUpAfterEveryTestMethod()
+    private void TakeScreenshotForTestFailure()
+    {
+        if (ScreenshotTaker != null)
         {
-            Driver.Close();
-            Driver.Quit();
+            ScreenshotTaker.CreateScreenshotIfTestFailed();
+            Reporter.ReportTestOutcome(ScreenshotTaker.ScreenshotFilePath);
         }
+        else
+        {
+            Reporter.ReportTestOutcome("");
+        }
+    }
 
-        private IWebDriver GetChromeDriver()
-        {
-            var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new ChromeDriver(outPutDirectory);
-        }
+    private void StopBrowser()
+    {
+        if (Driver == null)
+            return;
+        Driver.Quit();
+        Driver = null;
+        Logger.Trace("Browser stopped successfully.");
+    }
+
+    private IWebDriver GetChromeDriver()
+    {
+        var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        return new ChromeDriver(outPutDirectory);
     }
 }
