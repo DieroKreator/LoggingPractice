@@ -74,6 +74,7 @@ public class ScreenshotTaker
             return;
         ScreenshotFilePath = $"{Reporter.LatestResultsReportFolder}\\{screenshotName}.jpg";
         ScreenshotFilePath = ScreenshotFilePath.Replace('/', ' ').Replace('"', ' ');
-        ss.SaveAsFile(ScreenshotFilePath, ScreenshotImageFormat.Png);
+        // ss.SaveAsFile(ScreenshotFilePath, ScreenshotImageFormat.Png);
+        ss.SaveAsFile(ScreenshotFilePath);
     }
 }
