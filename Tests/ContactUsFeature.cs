@@ -15,4 +15,18 @@ public class ContactUsFeature : BaseTest
         contactUsPage.GoTo();
         Assert.IsTrue(contactUsPage.IsLoaded, "The contact us page did not open successfully");
     }
+
+    [TestMethod]
+    [Description("Validate that the contact us page opens when clicking the Contact Us button.")]
+    [TestProperty("Author", "Diego Rojas")]
+    public void TCID4()
+    {
+        var homePage = new HomePage(Driver);
+        homePage.GoTo();
+        Assert.IsTrue(homePage.IsLoaded, "Home page did not open successfully");
+
+        var contactUsPage = homePage.Header.ClickContactUsButton();
+        Assert.IsTrue(contactUsPage.IsLoaded, "The contact us page did not open successfully.");
+
+    }
 }
