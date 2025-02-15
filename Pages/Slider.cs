@@ -7,7 +7,7 @@ public class Slider : BaseApplicationPage
 {
     public Slider(IWebDriver driver) : base(driver) { }
 
-    public object CurrentImage => MainSliderImage.GetAttribute("style");
+    public string CurrentImage => MainSliderImage.GetAttribute("style");
 
     private IWebElement MainSliderImage => Driver.FindElement(By.Id("homeslider"));
 
