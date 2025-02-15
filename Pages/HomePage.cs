@@ -14,20 +14,6 @@ internal class HomePage : BaseApplicationPage
 
     public Slider Slider { get; internal set; }
 
-    public bool IsLoaded
-    {
-
-        get
-        {
-            var isLoaded = Driver.Url.Contains("http://automationpractice.com/index.php");
-            Reporter.LogTestStepForBugLogger(Status.Info, "Validate whether the Home Page loaded successfully.");
-            _logger.Trace($"Home page is loaded=>{isLoaded}");
-            return isLoaded;
-        }
-    }
-
-    // public HeaderSection Header => new HeaderSection(Driver);
-
     internal void GoTo()
     {
         var url = "http://automationpractice.com";
